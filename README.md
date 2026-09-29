@@ -2,6 +2,7 @@
 
 Website files for pandorasboxchoir.org, based on the approved H9 design.
 Hosted on GitHub Pages from the main branch, repository root.
+Website: https://pandorasboxchoir.org/ (www redirects here).
 
 This is a technical preview. Search indexing is disabled in the HTML until
 the remaining copy, programme dates, and launch details have been reviewed.
