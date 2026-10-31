@@ -665,6 +665,42 @@ main:focus { outline: none; }
   .btn:not(.ghost) { background: none; color: var(--accent); }
 }
 </style>
+<style data-site="roster">
+.panel .roster { margin-top: 10px; }
+.roster summary {
+  width: fit-content;
+  color: var(--accent);
+  cursor: pointer;
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: .74rem;
+  font-weight: 650;
+  letter-spacing: .12em;
+  list-style: none;
+  text-transform: uppercase;
+}
+.roster summary::-webkit-details-marker { display: none; }
+.roster summary::after { content: "+"; display: inline-block; width: 1em; margin-left: .45em; text-align: center; }
+.roster[open] summary::after { content: "\2212"; }
+.roster summary:hover { color: var(--ink); }
+.roster-conductor { margin: 16px 0 0; }
+.roster-conductor span, .roster dt {
+  color: var(--season);
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: .7rem;
+  font-weight: 650;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.roster-conductor span { margin-right: .6em; }
+.roster dl { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px clamp(16px, 2.4vw, 30px); margin: 16px 0 0; }
+.roster dt { margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid var(--hair); }
+.roster dd { margin: 0 0 9px; line-height: 1.3; }
+.roster-note { display: block; margin-top: 2px; color: var(--muted); font-size: .84em; }
+.roster-key { margin: 14px 0 0; color: var(--muted); font-size: .84em; }
+@media (max-width: 900px) { .roster dl { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 360px) { .roster dl { grid-template-columns: minmax(0, 1fr); } }
+@media print { .roster > :not(summary) { display: block; } }
+</style>
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -732,6 +768,7 @@ main:focus { outline: none; }
           <h3><span class="nowrap"><span class="composer">Distler</span> <span class="sep" aria-hidden="true"></span></span> <span class="work" lang="de" translate="no">Die Weihnachts&shy;geschichte</span></h3>
           <p class="also">with P&eacute;rotin and Poston</p>
           <p class="why">A familiar story, heard anew. Distler&rsquo;s telling of the Christmas story weaves solo voices and choir around the returning melody of &ldquo;Lo, How a Rose E&rsquo;er Blooming.&rdquo; Music by P&eacute;rotin and Poston completes a program of wonder, tenderness, and devotion.</p>
+          <details class="roster"><summary>Who&rsquo;s singing</summary><p class="roster-conductor"><span>Conductor</span> Andrew Welch</p><dl><div><dt>Soprano</dt><dd>Amanda Densmoor<span class="roster-note" lang="de">Der Engel</span></dd><dd>Nicole Vernot-Jonas</dd><dd>Kerry Holahan<span class="roster-note" lang="de">Elisabeth</span></dd></div><div><dt>Alto</dt><dd>Matilda Smolij<span class="roster-note" lang="de">Maria</span></dd><dd>Charlotte Stewart</dd><dd>Grace &lsquo;Kai&rsquo; Kiver</dd></div><div><dt>Tenor</dt><dd>Patrick Kilbride</dd><dd>John Logan Wood</dd><dd>John Mullan<span class="roster-note" lang="de">Der Erz&auml;hler</span></dd></div><div><dt>Bass</dt><dd>Collin Power<span class="roster-note" lang="de">Simeon</span></dd><dd>Tommy Rust</dd><dd>Corbin Phillips<span class="roster-note" lang="de">Herodes</span></dd></div></dl><p class="roster-key">Solo roles in the Distler appear under each singer&rsquo;s name.</p></details>
           <p class="ticket"><a href="#join">Get ticket alerts &rarr;</a></p>
         </article>
 
