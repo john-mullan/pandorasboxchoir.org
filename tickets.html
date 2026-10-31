@@ -38,86 +38,270 @@ Please don't remove this notice. Thanks.
 }
 </style>
 <style>
-:root { color-scheme: only light; --ground: #F1E6D5; --ink: #163125; --accent: #265440; --muted: #486054; --hair: #c7c5b5; }
-* { box-sizing: border-box; }
-body { margin: 0; background: var(--ground); color: var(--ink); font: 1.15rem/1.55 Newsreader, Georgia, serif; }
-a { color: var(--accent); text-underline-offset: 4px; }
-a:focus-visible { outline: 3px solid #A93F0E; outline-offset: 5px; }
-.wrap { width: min(1120px, calc(100% - clamp(40px, 8vw, 96px))); margin-inline: auto; }
-.skip-link { position: absolute; top: -80px; left: 20px; z-index: 10; padding: 12px 20px; background: var(--ink); color: var(--ground); }
-.skip-link:focus { top: 12px; }
-header { border-bottom: 1px solid var(--hair); }
-.header-inner { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.brand { font: 700 clamp(1.15rem, 2.5vw, 1.5rem)/1.1 "ITC Korinna", Georgia, serif; text-transform: uppercase; text-decoration: none; }
-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 14px 28px; }
-nav a, .kicker { font: 650 .74rem/1.4 Archivo, Arial, sans-serif; letter-spacing: .12em; text-transform: uppercase; }
-nav a { text-decoration: none; padding-block: 10px; }
-nav a:hover, nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; }
-.paint-band { height: 12px; background: url("assets/derived/redon-nga-band-blooms.jpg") center 48% / cover; }
-main { padding-block: clamp(36px, 5vw, 64px); }
+/* Mirrors the homepage's header, type, buttons, bands, and footer.
+   build_site.py injects the homepage's own header and footer markup. */
+:root {
+  color-scheme: only light;
+  --ground: #F1E6D5;
+  --ink: #163125;
+  --muted: #486054;
+  --accent: #265440;
+  --season: #7E512A;
+  --spark: #C94E16;
+  --on-accent: #F1E6D5;
+  --white: #FFFDF8;
+  --hair: color-mix(in srgb, var(--ink) 22%, transparent);
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: Newsreader, Georgia, "Times New Roman", serif;
+  font-size: 1.1rem;
+  line-height: 1.58;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--spark); outline-offset: 4px; }
 main:focus { outline: none; }
-.intro { margin-bottom: 28px; }
-.kicker { color: #7E512A; margin: 0 0 10px; }
-h1 { margin: 0; font: 700 clamp(2.5rem, 6vw, 4rem)/1 "ITC Korinna", Georgia, serif; text-transform: uppercase; }
-.intro p:last-child { margin: 18px 0 0; max-width: 55ch; color: var(--muted); }
-.ticket-frame { background: #fff; border: 1px solid var(--hair); padding: clamp(8px, 2vw, 24px); }
+p { text-wrap: pretty; }
+.wrap { width: min(1120px, calc(100% - clamp(40px, 8vw, 96px))); margin-inline: auto; }
+.display, .brand-name {
+  font-family: "ITC Korinna", Georgia, serif;
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: .98;
+  text-transform: uppercase;
+}
+.kicker {
+  margin: 0;
+  color: var(--season);
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-variation-settings: "wdth" 82;
+  font-size: .73rem;
+  font-weight: 650;
+  letter-spacing: .15em;
+  line-height: 1.45;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.btn {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  padding: .82em 1.42em;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: .78rem;
+  font-weight: 680;
+  letter-spacing: .09em;
+  line-height: 1.1;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.skip-link {
+  position: fixed;
+  z-index: 1200;
+  top: -80px;
+  left: 12px;
+  padding: 10px 16px;
+  background: var(--accent);
+  color: var(--on-accent);
+  font: 700 .75rem/1.2 Archivo, Arial, sans-serif;
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.skip-link:focus { top: 12px; }
+
+/* Header: the homepage's painted navband. */
+.navband {
+  position: relative;
+  border-bottom: 1px solid var(--hair);
+  background:
+    linear-gradient(rgba(241,230,213,.48), rgba(241,230,213,.48)),
+    url("assets/derived/redon-nga-band-blooms.jpg") center 60% / cover;
+}
+.navband > .wrap { position: relative; z-index: 1; }
+.navband :focus-visible, .skip-link:focus-visible { outline-color: var(--ink); }
+.site-header {
+  min-height: 76px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 28px;
+  padding-block: 15px;
+}
+.brand-lockup { display: inline-flex; align-items: baseline; gap: 12px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.brand-name { padding-top: 5px; border-top: 2px solid var(--accent); font-size: 1.02rem; }
+.brand-kind {
+  padding-left: 12px;
+  border-left: 1px solid color-mix(in srgb, var(--ink) 34%, transparent);
+  color: var(--ink);
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: .66rem;
+  font-weight: 650;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.site-nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 28px); }
+.site-nav .navlink {
+  color: var(--ink);
+  font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+  font-size: .74rem;
+  font-weight: 620;
+  letter-spacing: .11em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.site-nav .navlink, .site-nav .btn { white-space: nowrap; }
+.site-nav .navlink[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+@media (hover: hover) {
+  .btn:hover { background: var(--ink); border-color: var(--ink); color: var(--on-accent); }
+  .site-nav .navlink:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+}
+
+/* Intro: plate VI, Epimetheus receiving Pandora, in the hero's treatment. */
+.intro { position: relative; overflow: hidden; padding-block: clamp(52px, 6.5vw, 82px); }
+.intro .plate {
+  position: absolute;
+  top: 8%;
+  right: -1%;
+  bottom: -6%;
+  width: 54%;
+  background: url("assets/derived/plate-006-full-pen-smooth-accent.svg") right bottom / contain no-repeat;
+  opacity: .31;
+  pointer-events: none;
+}
+.intro .fade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--ground) 0%, var(--ground) 36%, color-mix(in srgb, var(--ground) 58%, transparent) 50%, transparent 64%);
+  pointer-events: none;
+}
+.intro .wrap { position: relative; z-index: 1; }
+.intro .display { margin: 10px 0 0; font-size: clamp(2.6rem, 6vw, 4.6rem); }
+.intro .lede { max-width: 38ch; margin: 18px 0 0; font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.45; }
+.band {
+  height: clamp(80px, 10vw, 118px);
+  border-block: 1px solid var(--hair);
+  background: url("assets/derived/redon-nga-band-ridge.jpg") center 76% / cover no-repeat;
+}
+
+/* Ticket widget on the white ground used by the homepage's season section. */
+.tickets { padding-block: clamp(40px, 5.5vw, 70px); background: var(--white); }
+.ticket-frame { border: 1px solid var(--hair); background: #fff; padding: clamp(8px, 2vw, 24px); }
 #ludusWidget { display: block; width: 100%; border: 0; }
-.ticket-help { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; font-size: 1rem; }
+.ticket-help { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; color: var(--muted); font-size: 1rem; }
 .ticket-help p { margin: 0; }
-.mailing-note { margin: 32px 0 0; max-width: 60ch; color: var(--muted); }
-footer { border-top: 1px solid var(--hair); padding: 26px 0 32px; color: var(--muted); font-size: 1rem; }
-footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
-footer p { margin: 0; }
-@media (max-width: 600px) {
-  .header-inner { padding-block: 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
-  nav { gap: 20px; }
+.mailing-note { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: clamp(32px, 4vw, 48px); padding-top: clamp(24px, 3vw, 32px); border-top: 1px solid var(--hair); }
+.mailing-note p { max-width: 52ch; margin: 0; color: var(--muted); }
+
+footer { padding-block: 40px 50px; background: var(--ink); color: #B9C6BC; font-size: .94rem; }
+footer a { color: var(--ground); }
+footer .cols { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 24px 48px; }
+footer .fbrand { max-width: 54ch; margin: 0; color: var(--ground); }
+footer .status { margin: 0; }
+footer .credit { max-width: 72ch; margin: 16px 0 0; font-size: .84rem; }
+
+@media (max-width: 830px) { .brand-kind { display: none; } }
+@media (max-width: 820px) {
+  .intro { padding-bottom: clamp(150px, 42vw, 210px); }
+  .intro .plate { top: auto; right: 0; bottom: 8px; width: 100%; height: clamp(140px, 40vw, 200px); background-position: center bottom; opacity: .34; }
+  .intro .fade { display: none; }
+}
+@media (max-width: 640px) {
+  .wrap { width: min(100% - 36px, 1120px); }
+  .site-header { display: grid; grid-template-columns: 1fr; gap: 10px; padding-block: 12px; }
+  .brand-lockup { display: grid; grid-template-columns: 1fr; gap: 4px; white-space: normal; }
+  .site-nav { display: flex; flex-wrap: wrap; gap: 1px; width: 100%; border: 1px solid var(--hair); }
+  .site-nav .navlink, .site-nav .btn { min-height: 44px; display: flex; align-items: center; justify-content: center; padding: 8px 6px; font-size: .7rem; letter-spacing: .07em; text-align: center; }
+  .site-nav .navlink { flex: 1 0 auto; }
+  .site-nav .btn { flex: 1.6 0 auto; border: 0; }
+  .site-nav a:focus-visible { outline-offset: -4px; }
+  .navband .site-nav .btn:focus-visible { outline-color: var(--on-accent); }
   .ticket-frame { margin-inline: -10px; padding: 8px; }
+}
+@media (max-width: 340px) {
+  .site-nav .navlink, .site-nav .btn { padding-inline: 5px; letter-spacing: .05em; }
+}
+@media print {
+  .navband, .band, .intro .plate, .intro .fade, .skip-link { display: none !important; }
 }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#tickets">Skip to tickets</a>
-<header><div class="wrap header-inner">
-  <a class="brand" href="./" translate="no">Pandora’s Box</a>
-  <nav aria-label="Primary navigation">
-    <a href="./#season">Season One</a>
-    <a href="tickets.html" aria-current="page">Tickets</a>
-    <a href="./#join">Join the list</a>
-  </nav>
-</div></header>
-<div class="paint-band" aria-hidden="true"></div>
-<main class="wrap" id="tickets" tabindex="-1">
-  <div class="intro">
-    <p class="kicker">Pandora’s Box · Washington &amp; Baltimore</p>
-    <h1>Tickets</h1>
-    <p>Available performances appear below. Choose a concert to see ticket options.</p>
+<div class="navband">
+  <div class="wrap">
+    <header class="site-header">
+      <a class="brand-lockup" href="./" translate="no" aria-label="Pandora's Box, professional chamber choir, home">
+        <span class="brand-name">Pandora&rsquo;s Box</span>
+        <span class="brand-kind">Professional chamber choir</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a class="navlink" href="./#season">Season One</a>
+        <a class="navlink" href="tickets.html" aria-current="page">Tickets</a>
+        <a class="btn" href="./#join">Join the list</a>
+      </nav>
+    </header>
   </div>
-  <div class="ticket-frame" aria-label="Tickets from Ludus">
-    <script>
-      var subdomain = "pandorasboxchoir";
-      var showID = "";
-      var sections = "events";
-      var categoryID = "";
-      var hideNav = "false";
-      var width = "100%";
-    </script>
-    <script src="https://pandorasboxchoir.ludus.com/widget.js"></script>
-    <script>
-      // The provider inserts its iframe synchronously and manages its height.
-      var ticketFrame = document.getElementById('ludusWidget');
-      if (ticketFrame) ticketFrame.title = 'Pandora’s Box tickets — Ludus';
-    </script>
-    <noscript><p>Enable JavaScript to buy tickets here, or <a href="https://pandorasboxchoir.ludus.com/">visit our Ludus ticket page</a>.</p></noscript>
-  </div>
-  <div class="ticket-help">
-    <p>Trouble loading? <a href="https://pandorasboxchoir.ludus.com/">Open tickets on Ludus ↗</a></p>
-    <p>Questions? <a href="mailto:hello@pandorasboxchoir.org">Email us</a></p>
-  </div>
-  <p class="mailing-note">Waiting for tickets to go on sale? <a href="./#join">Join the mailing list</a> for concert announcements and ticket releases.</p>
+</div>
+<main id="tickets" tabindex="-1">
+  <section class="intro">
+    <div class="plate" role="img" aria-label="Flaxman's Epimetheus reaching out to receive Pandora as Hermes brings her to him."></div>
+    <div class="fade" aria-hidden="true"></div>
+    <div class="wrap">
+      <p class="kicker">Season One &middot; Washington &amp; Baltimore</p>
+      <h1 class="display">Tickets</h1>
+      <p class="lede">Choose a performance below to see seats and ticket options.</p>
+    </div>
+  </section>
+  <div class="band" aria-hidden="true"></div>
+  <section class="tickets">
+    <div class="wrap">
+      <div class="ticket-frame" aria-label="Tickets from Ludus">
+        <script>
+          var subdomain = "pandorasboxchoir";
+          var showID = "";
+          var sections = "events";
+          var categoryID = "";
+          var hideNav = "false";
+          var width = "100%";
+        </script>
+        <script src="https://pandorasboxchoir.ludus.com/widget.js"></script>
+        <script>
+          // The provider inserts its iframe synchronously and manages its height.
+          var ticketFrame = document.getElementById('ludusWidget');
+          if (ticketFrame) ticketFrame.title = 'Pandora’s Box tickets — Ludus';
+        </script>
+        <noscript><p>Enable JavaScript to buy tickets here, or <a href="https://pandorasboxchoir.ludus.com/">visit our Ludus ticket page</a>.</p></noscript>
+      </div>
+      <div class="ticket-help">
+        <p>Trouble loading? <a href="https://pandorasboxchoir.ludus.com/">Open tickets on Ludus ↗</a></p>
+        <p>Questions? <a href="mailto:hello@pandorasboxchoir.org">Email us</a></p>
+      </div>
+      <div class="mailing-note">
+        <p>Waiting for tickets to go on sale? Join the mailing list for concert announcements and ticket releases.</p>
+        <a class="btn" href="./#join">Join the list</a>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="wrap">
-  <p><strong translate="no">Pandora’s Box</strong> · A professional chamber choir</p>
-  <p><a href="./#support">Support</a> · <a href="privacy.html">Privacy</a></p>
-</div></footer>
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <p class="fbrand"><strong translate="no">Pandora&rsquo;s Box</strong> &mdash; a new professional chamber choir performing in Washington, DC and Baltimore.</p>
+      <p class="status"><a href="mailto:hello@pandorasboxchoir.org">hello@pandorasboxchoir.org</a><br><a href="./#support">Support</a> &middot; <a href="tickets.html">Tickets</a> &middot; <a href="privacy.html">Privacy</a></p>
+    </div>
+    <p class="credit">Line drawing: a single-pen tracing after John Flaxman, from <em lang="de">John Flaxman&rsquo;s Zeichnungen zu Sagen des klassischen Altertums</em> (Insel-Verlag, 1910), painted in the brand green. Public domain, via Wikimedia Commons. Painting details: Odilon Redon, <em>Pandora</em>, 1910/1912. National Gallery of Art, Washington, Chester Dale Collection (1963.10.56). NGA open access.</p>
+  </div>
+</footer>
 </body>
 </html>
