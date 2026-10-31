@@ -168,10 +168,12 @@ p { text-wrap: pretty; }
 }
 
 /* Intro: a shorter cut of the homepage hero. Plate VI (Epimetheus receiving
-   Pandora) at the hero plate's scale, and a painted heading under the lid rule. */
+   Pandora), cropped knees-up so the faces match the hero's scale, and the
+   wordmark's vivid Redon paint under the lid rule. */
 .intro {
+  --paint: url("assets/derived/redon-h7-vivid-travel-w1200.jpg");
   position: relative;
-  min-height: clamp(380px, 46vw, 560px);
+  min-height: clamp(400px, 48vw, 600px);
   display: flex;
   align-items: center;
   overflow-x: clip;
@@ -183,7 +185,7 @@ p { text-wrap: pretty; }
   right: -2%;
   bottom: 0;
   width: 64%;
-  background: url("assets/derived/plate-006-full-pen-smooth-accent.svg") right bottom / contain no-repeat;
+  background: url("assets/derived/plate-006-full-pen-smooth-tight-accent.svg") right bottom / contain no-repeat;
   opacity: .31;
   pointer-events: none;
 }
@@ -200,12 +202,14 @@ p { text-wrap: pretty; }
 .painted h1 {
   margin: 0;
   font-size: clamp(3rem, 9vw, 7.4rem);
-  background: var(--accent) url("assets/derived/redon-nga-wordmark.jpg") 50% 82% / cover no-repeat;
+  background: var(--accent) var(--paint) 50% 0 / cover no-repeat;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: saturate(1.7) brightness(.67) contrast(1.15);
+}
+@media (min-width: 1200px), (min-width: 600px) and (min-resolution: 1.5dppx) {
+  .intro { --paint: url("assets/derived/redon-h7-vivid-travel-w1746.jpg"); }
 }
 @supports not ((background-clip: text) or (-webkit-background-clip: text)) {
   .painted h1 { background: none; -webkit-text-fill-color: currentColor; color: var(--accent); filter: none; }
@@ -276,7 +280,7 @@ footer .credit { max-width: 72ch; margin: 16px 0 0; font-size: .84rem; }
     <div class="plate" role="img" aria-label="Flaxman's Epimetheus reaching out to receive Pandora as Hermes brings her to him."></div>
     <div class="fade" aria-hidden="true"></div>
     <div class="wrap">
-      <p class="kicker">Season One &middot; Washington &amp; Baltimore</p>
+      <p class="kicker">Concerts &middot; Washington &amp; Baltimore</p>
       <div class="painted"><span class="lid" aria-hidden="true"></span><h1 class="display">Tickets</h1></div>
       <p class="lede">Choose a performance to see seats and ticket options.</p>
     </div>
