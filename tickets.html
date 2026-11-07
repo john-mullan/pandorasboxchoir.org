@@ -229,14 +229,20 @@ html { scroll-behavior: smooth; }
   background: url("assets/derived/redon-nga-band-blooms.jpg") center / cover no-repeat;
 }
 
-/* Ticket widget straight on white, so the Ludus panel reads as part of the page. */
-.tickets { padding-block: clamp(36px, 5vw, 64px); background: #fff; }
+/* Ludus's iframe is transparent, so the page ground shows around its own
+   white event card. Keep the iframe full width: below ~768px Ludus switches
+   to its mobile layout. Ludus calls scrollIntoView() on each checkout step,
+   hence the scroll margin. */
+.tickets { padding-block: clamp(20px, 3vw, 36px) clamp(36px, 5vw, 64px); background: var(--ground); }
 .ticket-frame { min-height: 350px; }
-#ludusWidget { display: block; width: 100%; border: 0; }
+#ludusWidget { display: block; width: 100%; border: 0; scroll-margin-top: 24px; transition: height .3s ease; }
+@media (prefers-reduced-motion: reduce) { #ludusWidget { transition: none; } }
 .ticket-help { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; padding-top: 18px; color: var(--muted); font-size: 1rem; }
 .ticket-help p { margin: 0; }
 .mailing-note { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: clamp(32px, 4vw, 48px); padding-top: clamp(24px, 3vw, 32px); border-top: 1px solid var(--hair); }
 .mailing-note p { max-width: 52ch; margin: 0; color: var(--muted); }
+/* Line the help row and mailing note up with Ludus's ~576px event card. */
+.ticket-help, .mailing-note { max-width: 576px; margin-inline: auto; }
 
 footer { padding-block: 40px 50px; background: var(--ink); color: #B9C6BC; font-size: .94rem; }
 footer a { color: var(--ground); }
