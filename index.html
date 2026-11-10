@@ -719,6 +719,16 @@ main:focus { outline: none; }
 @media (max-width: 360px) { .roster dl { grid-template-columns: minmax(0, 1fr); } }
 @media print { .roster > :not(summary) { display: block; } }
 </style>
+<style data-site="tickets">
+.hero-dates .perf { display: block; }
+.panel .perfs { max-width: 62ch; margin: 14px 0 0; padding: 0; line-height: 1.45; list-style: none; }
+.perfs li + li { margin-top: 10px; }
+.perfs time { display: block; font-variant-numeric: tabular-nums; font-weight: 600; }
+.perf-venue { display: block; color: var(--muted); }
+.panel .ticket.buy { margin-top: 18px; }
+.panel .ticket.buy + .roster { margin-top: 16px; }
+@media (max-width: 520px) { .panel .ticket.buy .btn { display: flex; } }
+</style>
 <style data-site="load">
 .band.ridge, .band.humus, .support-art { background-color: var(--ground-2); background-image: none; }
 .band { overflow: hidden; }
@@ -735,18 +745,14 @@ main:focus { outline: none; }
 }
 .signup-embed:not(.is-loaded) { min-height: 128px; }
 @media (max-width: 407px) { .signup-embed:not(.is-loaded) { min-height: 190px; } }
-@media (max-width: 30em) {
-  .hero-dates .dot { display: none; }
-  .hero-dates .where { display: block; }
-}
 @media (pointer: coarse) {
   .brand-lockup { padding-block: 10px; margin-block: -10px; }
   .roster summary { padding-block: .75em; }
-  .panel .ticket a, .join .fine a, footer .status a { display: inline-block; padding-block: .3em; }
+  .panel .ticket a:not(.btn), .join .fine a, footer .status a { display: inline-block; padding-block: .3em; }
 }
 @media print { .band img, .support-art img { display: none; } }
 </style>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "MusicGroup", "name": "Pandora’s Box", "description": "A professional chamber choir performing in Washington, DC and Baltimore.", "url": "https://pandorasboxchoir.org/", "email": "hello@pandorasboxchoir.org", "genre": "Choral music", "areaServed": ["Washington, DC", "Baltimore, MD"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MusicGroup", "@id": "https://pandorasboxchoir.org/#choir", "name": "Pandora’s Box", "description": "A professional chamber choir performing in Washington, DC and Baltimore.", "url": "https://pandorasboxchoir.org/", "email": "hello@pandorasboxchoir.org", "genre": "Choral music", "areaServed": ["Washington, DC", "Baltimore, MD"]}, {"@type": "MusicEvent", "name": "Rose Ever Blooming", "description": "A Concert of Carols Through the Ages: Distler’s telling of the Christmas story, with music by Pérotin and Poston.", "startDate": "2026-12-12T19:00:00-05:00", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Church of the Ascension and Saint Agnes", "address": {"@type": "PostalAddress", "streetAddress": "1215 Massachusetts Ave NW", "addressLocality": "Washington", "addressRegion": "DC", "addressCountry": "US"}}, "image": "https://pandorasboxchoir.org/assets/derived/share-card-rose-ever-blooming-1200x630.png", "performer": {"@id": "https://pandorasboxchoir.org/#choir"}, "organizer": {"@id": "https://pandorasboxchoir.org/#choir"}, "offers": {"@type": "Offer", "url": "https://pandorasboxchoir.org/tickets.html"}}, {"@type": "MusicEvent", "name": "Rose Ever Blooming", "description": "A Concert of Carols Through the Ages: Distler’s telling of the Christmas story, with music by Pérotin and Poston.", "startDate": "2026-12-13T15:00:00-05:00", "eventStatus": "https://schema.org/EventScheduled", "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode", "location": {"@type": "Place", "name": "Westmoreland Congregational United Church of Christ", "address": {"@type": "PostalAddress", "streetAddress": "1 Westmoreland Circle NW", "addressLocality": "Bethesda", "addressRegion": "MD", "addressCountry": "US", "postalCode": "20816"}}, "image": "https://pandorasboxchoir.org/assets/derived/share-card-rose-ever-blooming-1200x630.png", "performer": {"@id": "https://pandorasboxchoir.org/#choir"}, "organizer": {"@id": "https://pandorasboxchoir.org/#choir"}, "offers": {"@type": "Offer", "url": "https://pandorasboxchoir.org/tickets.html"}}]}</script>
 </head>
 <body>
 <a class="skip-link" href="#top">Skip to content</a>
@@ -782,9 +788,9 @@ main:focus { outline: none; }
           </span>
         </a>
         <p class="hero-sentence">Music with stakes.</p>
-        <p class="hero-dates"><strong>Next: <span class="work">Rose Ever Blooming</span></strong><br><span class="nowrap">December 12&ndash;13, 2026</span><span class="dot"> &middot; </span><span class="where">Washington,&nbsp;DC &amp;&nbsp;Bethesda</span></p>
+        <p class="hero-dates"><strong>Next: <span class="work">Rose Ever Blooming</span></strong><span class="perf"><time class="nowrap" datetime="2026-12-12T19:00:00-05:00">Sat, Dec&nbsp;12, 7&nbsp;PM</time> &middot; <span class="nowrap">Washington,&nbsp;DC</span></span><span class="perf"><time class="nowrap" datetime="2026-12-13T15:00:00-05:00">Sun, Dec&nbsp;13, 3&nbsp;PM</time> &middot; <span class="nowrap">Bethesda,&nbsp;MD</span></span></p>
         <div class="hero-actions">
-          <a class="btn" href="#join">Join the list</a>
+          <a class="btn" href="tickets.html#tickets-list">Buy tickets</a>
           <a class="btn ghost" href="#season">Season One</a>
         </div>
       </div>
@@ -816,16 +822,17 @@ main:focus { outline: none; }
             </picture>
             <figcaption>Georges de La Tour, <i>The Newborn</i>, c.&nbsp;1645&ndash;48. Mus&eacute;e des Beaux-Arts, Rennes.</figcaption>
           </figure>
-          <p class="when"><span class="date">December 12&ndash;13, 2026</span><span class="vh">, </span> <span>Two performances</span><span class="vh">, </span> <span>Washington,&nbsp;DC &amp;&nbsp;Bethesda</span></p>
+          <p class="when"><span class="date">December 2026</span></p>
           <h3><span class="work">Rose Ever Blooming</span></h3>
           <p class="also">A Concert of Carols Through the Ages</p>
           <p class="why">A familiar story, heard anew. Distler&rsquo;s telling of the Christmas story weaves solo voices and choir around the returning melody of &ldquo;Lo, How a Rose E&rsquo;er Blooming.&rdquo; Music by P&eacute;rotin and Poston completes a program of wonder, tenderness, and devotion.</p>
+          <ul class="perfs" aria-label="Performances"><li><time datetime="2026-12-12T19:00:00-05:00">Saturday, December&nbsp;12, 7&nbsp;PM</time><span class="perf-venue">Church of the Ascension and Saint Agnes, <span class="nowrap">Washington, DC</span></span></li><li><time datetime="2026-12-13T15:00:00-05:00">Sunday, December&nbsp;13, 3&nbsp;PM</time><span class="perf-venue">Westmoreland Congregational United Church of Christ, <span class="nowrap">Bethesda, MD</span></span></li></ul>
+          <p class="ticket buy"><a class="btn" href="tickets.html#tickets-list">Buy tickets</a></p>
           <details class="roster"><summary>Who&rsquo;s singing</summary><p class="roster-conductor"><span>Conductor</span> Andrew Welch</p><dl><div><dt>Soprano</dt><dd>Amanda Densmoor<span class="roster-note" lang="de">Der Engel</span></dd><dd>Nicole Vernot-Jonas</dd><dd>Kerry Holahan<span class="roster-note" lang="de">Elisabeth</span></dd></div><div><dt>Alto</dt><dd>Matilda Smolij<span class="roster-note" lang="de">Maria</span></dd><dd>Charlotte Stewart</dd><dd>Grace &lsquo;Kai&rsquo; Kiver</dd></div><div><dt>Tenor</dt><dd>Patrick Kilbride</dd><dd>John Logan Wood</dd><dd>John Mullan<span class="roster-note" lang="de">Der Erz&auml;hler</span></dd></div><div><dt>Bass</dt><dd>Collin Power<span class="roster-note" lang="de">Simeon</span></dd><dd>Tommy Rust</dd><dd>Corbin Phillips<span class="roster-note" lang="de">Herodes</span></dd></div></dl><p class="roster-key">Solo roles in the Distler appear under each singer&rsquo;s name.</p></details>
-          <p class="ticket"><a href="#join">Get ticket alerts &rarr;</a></p>
         </article>
 
         <article class="panel">
-          <p class="when"><span class="date">May 7&ndash;9, 2027</span><span class="vh">, </span> <span>Two performances</span></p>
+          <p class="when"><span class="date">May 2027</span></p>
           <h3><span class="work" lang="fr" translate="no">Figure humaine</span></h3>
           <p class="also">with Barnwell, Hogan, and Wolfe</p>
           <p class="why">Poulenc&rsquo;s <em lang="fr" translate="no">Figure humaine</em> sets Paul &Eacute;luard&rsquo;s poetry in twelve unaccompanied vocal parts, culminating in a declaration of liberty. Alongside music by Barnwell, Hogan, and Wolfe, it anchors a program about the need to speak, the longing for freedom, and the strength we find in singing together.</p>
