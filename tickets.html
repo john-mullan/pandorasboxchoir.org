@@ -51,6 +51,14 @@ Please don't remove this notice. Thanks.
   --on-accent: #F1E6D5;
   --white: #FFFDF8;
   --hair: color-mix(in srgb, var(--ink) 22%, transparent);
+  --blooms: url("assets/derived/redon-nga-band-blooms.jpg");
+}
+/* Narrower cuts of the blooms band for phones; build_site.py writes them. */
+@media (max-width: 640px) and (max-resolution: 2dppx), (max-width: 430px) {
+  :root { --blooms: url("assets/derived/redon-nga-band-blooms-w1200.jpg"); }
+}
+@media (max-width: 425px) and (max-resolution: 2dppx) {
+  :root { --blooms: url("assets/derived/redon-nga-band-blooms-w800.jpg"); }
 }
 *, *::before, *::after { box-sizing: border-box; }
 body {
@@ -127,7 +135,7 @@ html { scroll-behavior: smooth; }
   border-bottom: 1px solid var(--hair);
   background:
     linear-gradient(rgba(241,230,213,.48), rgba(241,230,213,.48)),
-    url("assets/derived/redon-nga-band-blooms.jpg") center 60% / cover;
+    var(--blooms) center 60% / cover;
 }
 .navband > .wrap { position: relative; z-index: 1; }
 .navband :focus-visible, .skip-link:focus-visible { outline-color: var(--ink); }
@@ -226,7 +234,7 @@ html { scroll-behavior: smooth; }
 .band {
   height: clamp(96px, 12vw, 150px);
   border-block: 1px solid var(--hair);
-  background: url("assets/derived/redon-nga-band-blooms.jpg") center / cover no-repeat;
+  background: var(--blooms) center / cover no-repeat;
 }
 
 /* Ludus's iframe is transparent, so the page ground shows around its own
@@ -271,6 +279,11 @@ footer .credit { max-width: 72ch; margin: 16px 0 0; font-size: .84rem; }
 }
 @media (max-width: 340px) {
   .site-nav .navlink, .site-nav .btn { padding-inline: 5px; letter-spacing: .05em; }
+}
+/* Roomier touch targets for the text links. */
+@media (pointer: coarse) {
+  .brand-lockup { padding-block: 10px; margin-block: -10px; }
+  .ticket-help a, footer .status a { display: inline-block; padding-block: .3em; }
 }
 @media print {
   .navband, .band, .intro .plate, .intro .fade, .skip-link { display: none !important; }
