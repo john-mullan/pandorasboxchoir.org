@@ -436,6 +436,22 @@ html[data-wmfast="active"][data-wmtravel="on"] .wordmark-paint { will-change: tr
 .panel .also { color: var(--muted); font-style: italic; }
 .panel .why { max-width: 62ch; margin-top: 5px; }
 .panel .ticket { margin-top: 8px; }
+/* Concert art: on the next concert only */
+.panel-art { grid-column: 1 / -1; margin: 0 0 clamp(16px, 2.2vw, 26px); }
+.panel-art picture, .panel-art img { display: block; width: 100%; height: auto; }
+.panel-art img { background: #0E0C0A; }
+.panel-art figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: .78rem;
+  line-height: 1.35;
+  text-align: right;
+}
+.panel.has-art .when { grid-row: 2 / span 4; }
+@media (max-width: 700px) {
+  .panel-art { margin-bottom: 10px; }
+  .panel-art figcaption { text-align: left; }
+}
 
 .join { border-top: 0; text-align: center; }
 .join > .wrap > .inner {
@@ -764,7 +780,14 @@ main:focus { outline: none; }
       </header>
 
       <div class="panels">
-        <article class="panel">
+        <article class="panel has-art">
+          <figure class="panel-art">
+            <picture>
+              <source media="(max-width: 700px)" srcset="assets/derived/latour-newborn-detail-1000.jpg" width="1000" height="795">
+              <img src="assets/derived/latour-newborn-wide-2240.jpg" width="2240" height="1120" loading="lazy" alt="Georges de La Tour&rsquo;s painting The Newborn: in candlelight, a woman shields the flame with her raised hand while Mary looks down at the swaddled Child in her arms.">
+            </picture>
+            <figcaption>Georges de La Tour, <i>The Newborn</i>, c.&nbsp;1645&ndash;48. Mus&eacute;e des Beaux-Arts, Rennes.</figcaption>
+          </figure>
           <p class="when"><span class="date">December 12&ndash;13, 2026</span><span class="vh">, </span> <span>Two performances</span><span class="vh">, </span> <span>Washington,&nbsp;DC &amp;&nbsp;Bethesda</span></p>
           <h3><span class="work">Rose Ever Blooming</span></h3>
           <p class="also">A Concert of Carols Through the Ages</p>
